@@ -1,3 +1,5 @@
+import imgUrl from "../../images/image-jeremy.png";
+
 interface ProfileCardProps {
   timeFrame: "daily" | "weekly" | "monthly";
   changeTimeFrame: React.MouseEventHandler;
@@ -14,7 +16,7 @@ function ProfileCard({ timeFrame, changeTimeFrame }: ProfileCardProps) {
     <section className="card card--profile">
       <header className="card__header">
         <img
-          src="../../images/image-jeremy.png"
+          src={imgUrl}
           alt="An Image of Jeremy Robson"
           className="card__image"
         />
