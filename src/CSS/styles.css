@@ -1,0 +1,305 @@
+/* Import Font */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+/* CSS Custom Properties */
+:root {
+  /* Primary Colors */
+  --blue: hsl(246, 80%, 60%);
+  --light-red-word: hsl(15, 100%, 70%);
+  --soft-blue-play: hsl(195, 74%, 62%);
+  --light-red-study: hsl(348, 100%, 68%);
+  --lime-green-exercise: hsl(145, 58%, 55%);
+  --violet-social: hsl(264, 64%, 52%);
+  --soft-orange-self-care: hsl(43, 84%, 65%);
+
+  /* Neutral Colors */
+  --very-dark-blue: hsl(226, 43%, 10%);
+  --dark-blue: hsl(235, 46%, 20%);
+  --desaturated-blue: hsl(235, 45%, 61%);
+  --pale-blue: hsl(236, 100%, 87%);
+
+  /* Active States Colors */
+  --light-dark-blue: hsl(235, 46%, 35%);
+}
+
+html {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#root {
+  background: var(--very-dark-blue);
+  color: var(--pale-blue);
+  font-size: 1.125rem;
+  width: 100%;
+  min-height: 100vh;
+  padding: 6rem 1.5rem;
+  display: grid;
+  place-items: center;
+}
+
+main {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 500px;
+}
+
+.card {
+  background-color: var(--dark-blue);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: grid;
+}
+
+/* Profile Card Styling */
+.card--profile {
+  & .card__header {
+    background-color: var(--blue);
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    place-items: center start;
+    padding: 2rem;
+    gap: 1rem;
+  }
+  & .card__image {
+    border: 3px solid white;
+    border-radius: 50%;
+  }
+
+  & .card__title {
+    display: grid;
+    color: white;
+
+    & small {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.6;
+    }
+
+    & span {
+      font-size: 1.125rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+  }
+
+  & .card__info {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-block: 1.5rem;
+
+    & .card__info-item {
+      color: var(--desaturated-blue);
+
+      & button {
+        border: none;
+        background: none;
+        color: inherit;
+      }
+    }
+  }
+}
+
+/* TimeFrame Card Styling */
+.work {
+  --main-color: var(--light-red-word);
+  --offset: -10px;
+}
+
+.play {
+  --main-color: var(--soft-blue-play);
+  --offset: -3px;
+}
+
+.study {
+  --main-color: var(--light-red-study);
+  --offset: -10px;
+}
+
+.exercise {
+  --main-color: var(--lime-green-exercise);
+}
+
+.social {
+  --main-color: var(--violet-social);
+  --offset: -13px;
+}
+
+.selfCare {
+  --main-color: var(--soft-orange-self-care);
+  --offset: -10px;
+}
+
+.card--activity {
+  grid-template-rows: 55px auto;
+  & .card__header {
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: end;
+    align-items: start;
+    padding-inline: 1rem;
+    height: 55px;
+
+    & svg {
+      margin-top: var(--offset, 0);
+    }
+  }
+
+  & .card__content {
+    background: inherit;
+    border-radius: 1rem;
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 2rem 1.45rem;
+    overflow: hidden;
+    margin-top: -15px;
+
+    & .card__content-title-activity {
+      font-size: 1.125rem;
+      font-weight: 500;
+    }
+
+    & .card__content-title-duration {
+      font-weight: 300;
+      font-size: 2rem;
+    }
+
+    & :is(svg, small) {
+      color: var(--pale-blue);
+      justify-self: end;
+    }
+  }
+}
+
+/* Active States Styling */
+*:focus-visible {
+  outline: none;
+}
+
+.card__content:is(:hover) {
+  background-color: var(--light-dark-blue);
+  cursor: pointer;
+}
+
+.card--profile .card__info-item button:is(:hover, :focus, :active) {
+  color: white;
+  cursor: pointer;
+}
+
+.card--activity .card__content svg:is(:hover) path {
+  fill: white;
+  cursor: pointer;
+}
+
+/* Modifier Classes */
+.card--profile .card__info-item.active button {
+  color: white;
+}
+
+/* Media Queries */
+@media screen and (min-width: 768px) {
+  #root {
+    padding: 0;
+  }
+  main {
+    grid-template-columns: 1fr 1fr;
+    max-width: 650px;
+  }
+  .card--profile {
+    grid-column: 1 / -1;
+    & .card__header {
+      gap: 3rem;
+    }
+  }
+  .card--profile .card__header span {
+    font-size: 2rem;
+  }
+}
+@media screen and (min-width: 992px) {
+  main {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 880px;
+  }
+
+  .card--profile {
+    grid-row: 1 / 3;
+    grid-column: unset;
+    --padding-inline: 1.5rem;
+
+    & .card__header {
+      padding: 2rem var(--padding-inline) 4rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      & .card__title {
+        grid-column: 1 / -1;
+        justify-self: start;
+
+        & span {
+          font-size: 2.5rem;
+          line-height: 1.3;
+        }
+      }
+    }
+
+    & .card__info {
+      padding-inline: var(--padding-inline);
+      flex-direction: column;
+      align-items: start;
+      gap: 0.5rem;
+    }
+  }
+
+  .card--activity {
+    grid-template-rows: 60px auto;
+    & .card__header {
+      height: 60px;
+    }
+    & .card__content {
+      padding-inline: 1rem;
+      & .card__content-title-duration {
+        grid-column: 1 / -1;
+        font-size: 3rem;
+      }
+
+      & small {
+        grid-column: 1 / -1;
+        justify-self: start;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  main {
+    max-width: 1100px;
+  }
+
+  .card--profile {
+    --padding-inline: 2rem;
+
+    & .card__header {
+      padding-block-end: 5rem;
+      gap: 2rem;
+    }
+
+    & .card__info {
+      gap: 1rem;
+    }
+  }
+
+  .card--activity {
+    & .card__content {
+      & .card__content-title-duration {
+        font-size: 4rem;
+      }
+    }
+  }
+}
